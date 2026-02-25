@@ -52,3 +52,7 @@ coverage/
 
 # Do not commit generated app.json (edit .homeycompose/app.json instead)
 app.json
+
+
+# Added by Homey CLI
+/.homeybuild/
