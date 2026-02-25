@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 20px;
+      color: #333;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    h2 { margin-top: 0; }
+    .instructions {
+      background: #f0f4f8;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .instructions ol { margin: 8px 0; padding-left: 24px; }
+    .instructions li { margin: 4px 0; }
+    button {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 12px;
+    }
+    #btn-capture {
+      background: #1a5276;
+      color: white;
+    }
+    #btn-capture:disabled {
+      background: #999;
+      cursor: not-allowed;
+    }
+    #btn-done {
+      background: #e8e8e8;
+      color: #333;
+      display: none;
+    }
+    .status {
+      text-align: center;
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 16px;
+      display: none;
+    }
+    .status.success { display: block; background: #d4edda; color: #155724; }
+    .status.error { display: block; background: #f8d7da; color: #721c24; }
+    .status.loading { display: block; background: #fff3cd; color: #856404; }
+  </style>
+</head>
+<body>
+  <h2>Re-capture Authentication Code</h2>
+  
+  <div class="instructions">
+    <strong>Before pressing the button below:</strong>
+    <ol>
+      <li>Go to the fan</li>
+      <li>Hold the <strong>WiFi button</strong> for <strong>8 seconds</strong></li>
+      <li>Wait until the <strong>LED starts blinking</strong></li>
+      <li>Come back here and press the button</li>
+    </ol>
+    <small>The fan stays in pairing mode for about 60 seconds.</small>
+  </div>
+
+  <button id="btn-capture" onclick="captureAuth()">Capture Authentication Code</button>
+  <button id="btn-done" onclick="done()">Done</button>
+  <div id="status" class="status"></div>
+
+  <script>
+    var _Homey;
+
+    function onHomeyReady(Homey) {
+      _Homey = Homey;
+      Homey.ready();
+    }
+
+    function captureAuth() {
+      const btn = document.getElementById('btn-capture');
+      const status = document.getElementById('status');
+      btn.disabled = true;
+      btn.textContent = 'Connecting to fan...';
+      status.className = 'status loading';
+      status.textContent = 'Connecting to fan and reading auth code... This may take up to 30 seconds.';
+
+      _Homey.emit('recapture_auth', null, (err, result) => {
+        btn.disabled = false;
+        btn.textContent = 'Capture Authentication Code';
+
+        if (err) {
+          status.className = 'status error';
+          status.textContent = 'Error: ' + (err.message || err);
+          return;
+        }
+
+        if (result && result.success) {
+          status.className = 'status success';
+          status.textContent = result.message || 'Auth code captured successfully!';
+          document.getElementById('btn-done').style.display = 'block';
+        } else {
+          status.className = 'status error';
+          status.textContent = (result && result.message) || 'Failed to capture auth code.';
+        }
+      });
+    }
+
+    function done() {
+      _Homey.done();
+    }
+  </script>
+</body>
+</html>

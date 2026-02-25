@@ -1,10 +1,39 @@
-<svg width="500" height="500" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="250" cy="250" r="240" fill="#ecf0f1"/>
-  <path d="M250 250 L250 50 A200 200 0 0 1 423 150 Z" fill="#3498db"/>
-  <path d="M250 250 L423 150 A200 200 0 0 1 423 350 Z" fill="#3498db"/>
-  <path d="M250 250 L423 350 A200 200 0 0 1 250 450 Z" fill="#3498db"/>
-  <path d="M250 250 L250 450 A200 200 0 0 1 77 350 Z" fill="#3498db"/>
-  <path d="M250 250 L77 350 A200 200 0 0 1 77 150 Z" fill="#3498db"/>
-  <path d="M250 250 L77 150 A200 200 0 0 1 250 50 Z" fill="#3498db"/>
-  <circle cx="250" cy="250" r="50" fill="#2c3e50"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 960" width="960" height="960">
+  <!-- Driver icon: Fresh Intellivent SKY fan - round ceiling vent with subtle 3D angle -->
+  <!-- Transparent background, device outline style -->
+  <defs>
+    <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#555"/>
+      <stop offset="100%" stop-color="#333"/>
+    </linearGradient>
+    <linearGradient id="grillGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#666"/>
+      <stop offset="100%" stop-color="#444"/>
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(480,480)">
+    <!-- Outer housing - slightly elliptical for 3D perspective -->
+    <ellipse cx="0" cy="0" rx="400" ry="380" fill="none" stroke="#444" stroke-width="12"/>
+
+    <!-- Inner housing ring -->
+    <ellipse cx="0" cy="0" rx="360" ry="342" fill="none" stroke="#555" stroke-width="6"/>
+
+    <!-- Ventilation grille - horizontal slats with perspective -->
+    <line x1="-320" y1="-240" x2="320" y2="-240" stroke="#555" stroke-width="5" stroke-linecap="round"/>
+    <line x1="-340" y1="-180" x2="340" y2="-180" stroke="#555" stroke-width="5" stroke-linecap="round"/>
+    <line x1="-350" y1="-120" x2="350" y2="-120" stroke="#555" stroke-width="5" stroke-linecap="round"/>
+    <line x1="-355" y1="-60" x2="355" y2="-60" stroke="#555" stroke-width="5" stroke-linecap="round"/>
+    <line x1="-358" y1="0" x2="358" y2="0" stroke="#555" stroke-width="5" stroke-linecap="round"/>
+    <line x1="-355" y1="60" x2="355" y2="60" stroke="#555" stroke-width="5" stroke-linecap="round"/>
+    <line x1="-350" y1="120" x2="350" y2="120" stroke="#555" stroke-width="5" stroke-linecap="round"/>
+    <line x1="-340" y1="180" x2="340" y2="180" stroke="#555" stroke-width="5" stroke-linecap="round"/>
+    <line x1="-320" y1="240" x2="320" y2="240" stroke="#555" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- Status indicator LED -->
+    <circle cx="0" cy="310" r="12" fill="#555"/>
+
+    <!-- Center logo area -->
+    <ellipse cx="0" cy="0" rx="50" ry="48" fill="none" stroke="#444" stroke-width="4"/>
+  </g>
 </svg>

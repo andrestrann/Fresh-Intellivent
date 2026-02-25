@@ -14,7 +14,8 @@
     "constant_speed_mode",
     "humidity_mode",
     "light_mode",
-    "airing_mode"
+    "airing_mode",
+    "last_updated"
   ],
   "platforms": [
     "local"
@@ -22,13 +23,51 @@
   "connectivity": [
     "ble"
   ],
+  "images": {
+    "small": "/drivers/sky/assets/images/small.png",
+    "large": "/drivers/sky/assets/images/large.png",
+    "xlarge": "/drivers/sky/assets/images/xlarge.png"
+  },
   "pair": [
     {
+      "id": "start",
+      "navigation": {
+        "next": "list_devices"
+      }
+    },
+    {
       "id": "list_devices",
-      "template": "list_devices"
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_devices"
+      }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
+    }
+  ],
+  "repair": [
+    {
+      "id": "recapture_auth",
+      "navigation": {}
     }
   ],
   "settings": [
+    {
+      "id": "poll_interval",
+      "type": "dropdown",
+      "label": { "en": "Update Frequency" },
+      "hint": { "en": "How often the app polls the fan for new data. On failure it retries more frequently." },
+      "value": "300",
+      "values": [
+        { "id": "60", "label": { "en": "Every 1 minute" } },
+        { "id": "120", "label": { "en": "Every 2 minutes" } },
+        { "id": "300", "label": { "en": "Every 5 minutes" } },
+        { "id": "600", "label": { "en": "Every 10 minutes" } },
+        { "id": "900", "label": { "en": "Every 15 minutes" } }
+      ]
+    },
     {
       "id": "auth_code",
       "type": "text",
@@ -36,7 +75,7 @@
         "en": "Authentication Code"
       },
       "hint": {
-        "en": "Leave empty to read from device (requires pairing mode)"
+        "en": "Auto-populated when paired. You can also enter it manually."
       }
     },
     {
@@ -70,14 +109,58 @@
       "type": "number",
       "label": { "en": "Boost Duration (min)" },
       "value": 10,
-      "attr": { "min": 0 }
+      "attr": { "min": 1, "max": 120 }
     },
     {
       "id": "pause_minutes",
       "type": "number",
       "label": { "en": "Pause Duration (min)" },
       "value": 60,
-      "attr": { "min": 0 }
+      "attr": { "min": 1, "max": 120 }
+    },
+    {
+      "id": "airing_run_time",
+      "type": "number",
+      "label": { "en": "Airing Duration (min)" },
+      "value": 60,
+      "attr": { "min": 1, "max": 120 }
+    },
+    {
+      "id": "airing_rpm",
+      "type": "number",
+      "label": { "en": "Airing RPM" },
+      "value": 1500,
+      "attr": { "min": 800, "max": 2400 }
+    },
+    {
+      "id": "light_detection",
+      "type": "dropdown",
+      "label": { "en": "Light Detection Level" },
+      "value": "1",
+      "values": [
+        { "id": "0", "label": { "en": "Off" } },
+        { "id": "1", "label": { "en": "Low" } },
+        { "id": "2", "label": { "en": "Medium" } },
+        { "id": "3", "label": { "en": "High" } }
+      ]
+    },
+    {
+      "id": "voc_enabled",
+      "type": "checkbox",
+      "label": { "en": "VOC Sensor Enabled" },
+      "value": true
+    },
+    {
+      "id": "voc_detection",
+      "type": "dropdown",
+      "label": { "en": "VOC Detection Level" },
+      "value": "1",
+      "values": [
+        { "id": "0", "label": { "en": "Off" } },
+        { "id": "1", "label": { "en": "Low" } },
+        { "id": "2", "label": { "en": "Medium" } },
+        { "id": "3", "label": { "en": "High" } }
+      ]
     }
   ]
 }

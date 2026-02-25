@@ -1,4 +1,27 @@
-<svg width="500" height="500" xmlns="http://www.w3.org/2000/svg">
-  <rect width="500" height="500" fill="#3498db"/>
-  <text x="50%" y="50%" font-family="Arial" font-size="100" fill="white" text-anchor="middle" dy=".3em">Fresh</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <!-- App icon: Stylized ventilation/airflow symbol - transparent background -->
+  <defs>
+    <linearGradient id="blade" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2980b9"/>
+      <stop offset="100%" stop-color="#1a5276"/>
+    </linearGradient>
+  </defs>
+  <!-- Fan blades - 5 curved blades radiating from center -->
+  <g transform="translate(250,250)">
+    <!-- Blade 1 -->
+    <path d="M0,-20 C40,-100 120,-180 30,-200 C-20,-210 -60,-160 -40,-80 Z" fill="url(#blade)" opacity="0.95"/>
+    <!-- Blade 2 -->
+    <path d="M0,-20 C40,-100 120,-180 30,-200 C-20,-210 -60,-160 -40,-80 Z" fill="url(#blade)" opacity="0.95" transform="rotate(72)"/>
+    <!-- Blade 3 -->
+    <path d="M0,-20 C40,-100 120,-180 30,-200 C-20,-210 -60,-160 -40,-80 Z" fill="url(#blade)" opacity="0.95" transform="rotate(144)"/>
+    <!-- Blade 4 -->
+    <path d="M0,-20 C40,-100 120,-180 30,-200 C-20,-210 -60,-160 -40,-80 Z" fill="url(#blade)" opacity="0.95" transform="rotate(216)"/>
+    <!-- Blade 5 -->
+    <path d="M0,-20 C40,-100 120,-180 30,-200 C-20,-210 -60,-160 -40,-80 Z" fill="url(#blade)" opacity="0.95" transform="rotate(288)"/>
+    <!-- Center hub -->
+    <circle cx="0" cy="0" r="35" fill="#1a5276"/>
+    <circle cx="0" cy="0" r="20" fill="#2980b9"/>
+  </g>
+  <!-- Outer ring for ventilation housing look -->
+  <circle cx="250" cy="250" r="230" fill="none" stroke="#2980b9" stroke-width="8" opacity="0.3"/>
 </svg>

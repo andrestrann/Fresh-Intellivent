@@ -1,2 +1,0 @@
-Placeholder for small store image (500x500 png).
-Please replace this file with a valid PNG image named 'small.png'.

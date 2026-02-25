@@ -1,2 +1,0 @@
-Placeholder for large store image (1000x500 png).
-Please replace this file with a valid PNG image named 'large.png'.

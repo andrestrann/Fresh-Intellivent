@@ -1,0 +1,54 @@
+# Homey app build artifacts
+node_modules/
+dist/
+build/
+*.log
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+run homey.md
+
+# Homey app generated files
+assets/images/*.txt
+assets/images/*.svg
+assets/images/*.png
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+*.~
+
+# Do not commit local Homey settings
+.settings/
+
+# Do not commit personal keys or secrets
+.env
+.env.*
+
+# Do not commit binaries
+*.exe
+*.dll
+*.so
+*.bin
+
+# Do not commit publish output
+publish/
+
+# Do not commit test output
+coverage/
+
+# Do not commit temporary files
+*.tmp
+*.temp
+
+# Do not commit backup files
+*.bak
+*.old
+
+# Do not commit generated app.json (edit .homeycompose/app.json instead)
+app.json

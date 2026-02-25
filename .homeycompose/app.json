@@ -13,6 +13,12 @@
     "name": "SavyTechLabs"
   },
   "category": "climate",
+  "brandColor": "#1a5276",
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
   "permissions": [
     "homey:wireless:ble"
   ]

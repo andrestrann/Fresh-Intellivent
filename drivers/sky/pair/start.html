@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 20px;
+      color: #333;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+    h2 {
+      margin-top: 0;
+      color: #1a5276;
+    }
+    .step-box {
+      background: #f0f4f8;
+      border-radius: 10px;
+      padding: 18px;
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+    .step-box ol {
+      margin: 10px 0 0 0;
+      padding-left: 24px;
+    }
+    .step-box li {
+      margin: 8px 0;
+    }
+    .note {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      border-radius: 6px;
+      padding: 12px 14px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .icon {
+      font-size: 48px;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="icon">🌀</div>
+  <h2>Connect Your Intellivent Fan</h2>
+
+  <div class="step-box">
+    <strong>Before we search for your fan, put it in pairing mode:</strong>
+    <ol>
+      <li>Make sure the fan is <strong>powered on</strong></li>
+      <li>Locate the <strong>WiFi / pairing button</strong> on the fan unit</li>
+      <li>Press and <strong>hold the button for 8 seconds</strong></li>
+      <li>Wait until the <strong>LED starts blinking</strong></li>
+    </ol>
+  </div>
+
+  <div class="note">
+    <strong>Important:</strong> The fan stays in pairing mode for about 60 seconds.
+    Once the LED is blinking, press <strong>Next</strong> below to search for your fan.
+  </div>
+
+  <p style="font-size: 14px; color: #666;">
+    After pairing, the app will automatically read the authentication code from the fan.
+    You can find it later in the device settings.
+  </p>
+
+  <script>
+    function onHomeyReady(Homey) {
+      Homey.ready();
+    }
+  </script>
+</body>
+</html>
