@@ -2,6 +2,10 @@
 
 Control your Fresh Intellivent SKY fans via Bluetooth using Homey Pro.
 
+## Known issues/limitatioins
+- Poor signal strenght from fan BLE. Homey needs to be somewhat close to the fan.
+- Connection and auth with fan fails randomly.
+
 ## Features
 - Read Temperature and Humidity
 - Read Fan Speed (RPM)
