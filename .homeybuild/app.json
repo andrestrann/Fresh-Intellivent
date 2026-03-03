@@ -364,7 +364,8 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "insights": false
+      "insights": false,
+      "icon": "/assets/clock_icon.svg"
     },
     "light_mode": {
       "type": "boolean",
@@ -386,7 +387,8 @@
       "getable": true,
       "setable": false,
       "min": 0,
-      "max": 3000
+      "max": 3000,
+      "icon": "/assets/icon.svg"
     },
     "pause_mode": {
       "type": "boolean",
@@ -407,6 +409,8 @@
       },
       "getable": true,
       "setable": true,
+      "decimals": 0,
+      "step": 1,
       "min": 800,
       "max": 2400,
       "uiComponent": "slider"
