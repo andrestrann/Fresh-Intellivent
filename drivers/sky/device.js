@@ -135,7 +135,7 @@ class SkyDevice extends Homey.Device {
       const constant = await this.sky.getConstantSpeed();
       this.log(`Constant speed: enabled=${constant.enabled} rpm=${constant.rpm}`);
       await this.setCapabilityValue('constant_speed_mode', constant.enabled);
-      await this.setCapabilityValue('target_rpm', constant.rpm);
+      await this.setCapabilityValue('target_rpm', Math.round(constant.rpm));
       
       const humidity = await this.sky.getHumidity();
       this.log(`Humidity: enabled=${humidity.enabled} detection=${humidity.detection} rpm=${humidity.rpm}`);
@@ -292,7 +292,11 @@ class SkyDevice extends Homey.Device {
   async onCapabilityTargetRpm(value) {
     // Use cached constant_speed_mode value — no BLE read needed
     const enabled = this.getCapabilityValue('constant_speed_mode') !== false;
+    const rpm = Math.round(value);
+    // write integer RPM to the fan
     await this._executeWrite('Set target RPM', () => this.sky.setConstantSpeed(enabled, value));
+    // ensure the capability is stored/displayed as integer as well
+    await this.setCapabilityValue('target_rpm', rpm).catch(() => null);
   }
 
   async onCapabilityBoost(value) {
