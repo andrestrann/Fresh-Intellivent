@@ -158,8 +158,8 @@ class SkyDevice extends Homey.Device {
       await this._syncSettingsFromFan(boost, humidity, pause, airing, light).catch(e => this.error('Settings sync error:', e));
 
       // Update last_updated timestamp
-      const now = new Date();
-      const timeStr = now.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' });
+      const tz = this.homey.clock.getTimezone();
+      const timeStr = new Date().toLocaleTimeString([], { timeZone: tz, hour: '2-digit', minute: '2-digit' });
       if (this.hasCapability('last_updated')) {
         await this.setCapabilityValue('last_updated', timeStr);
       }
