@@ -398,6 +398,51 @@ class SkyDevice extends Homey.Device {
       await this.setSettings(updates);
     }
   }
+
+  /**
+   * Called by the Flow Action run listener: args.device.startConstantSpeedRPM()
+   */
+  async startConstantSpeedRPM(requestedRpm) {
+    this.log('startConstantSpeedRPM called with:', requestedRpm);
+
+    // Fallback default if not provided
+    let rpm = Number(requestedRpm);
+    if (!Number.isFinite(rpm)) rpm = 1200;
+
+    // Clamp to supported range
+    const MIN_RPM = 800;
+    const MAX_RPM = 2400;
+    rpm = Math.max(MIN_RPM, Math.min(MAX_RPM, Math.round(rpm)));
+
+    const enabled = true;
+
+    // Send the command to the fan
+    try {
+      if (typeof this._executeWrite === 'function') {
+        await this._executeWrite('Set constant speed', () => this.sky.setConstantSpeed(enabled, rpm));
+      } else {
+        await this.sky.setConstantSpeed(enabled, rpm);
+      }
+    } catch (e) {
+      this.error('Failed to send constant speed command:', e);
+      throw e;
+    }
+
+    // Reflect state in capabilities
+    try {
+      if (this.hasCapability('target_rpm')) {
+        await this.setCapabilityValue('target_rpm', rpm);
+      }
+      if (this.hasCapability('constant_speed_mode')) {
+        await this.setCapabilityValue('constant_speed_mode', true);
+      }
+    } catch (e) {
+      this.error('Failed to set capability values:', e);
+    }
+
+    this.log(`Constant speed mode enabled at ${rpm} RPM`);
+    return true;
+  }
 }
 
 module.exports = SkyDevice;
