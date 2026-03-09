@@ -159,7 +159,9 @@ class SkyDevice extends Homey.Device {
 
       // Update last_updated timestamp
       const tz = this.homey.clock.getTimezone();
-      const timeStr = new Date().toLocaleTimeString([], { timeZone: tz, hour: '2-digit', minute: '2-digit' });
+      const locale = this.homey.i18n.getLanguage();
+
+      const timeStr = new Date().toLocaleTimeString(locale, { timeZone: tz, hour: '2-digit', minute: '2-digit' });
       if (this.hasCapability('last_updated')) {
         await this.setCapabilityValue('last_updated', timeStr);
       }
