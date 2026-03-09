@@ -8,6 +8,8 @@
   },
   "getable": true,
   "setable": true,
+  "decimals": 0,
+  "step": 1,
   "min": 800,
   "max": 2400,
   "uiComponent": "slider"
