@@ -1,0 +1,34 @@
+{
+  "title": {
+    "en": "Activate Constant Speed Mode"
+  },
+  "titleFormatted": {
+    "en": "Activate the fan in Constant Speed Mode at [[rpm]] RPM"
+  },
+  "hint": {
+    "en": "When activated, your fan will activate in Constant Speed Mode without a timer until it has been deactivated"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=sky"
+    },
+    {
+      "type": "number",
+      "name": "rpm",
+      "title": {
+        "en": "RPM"
+      },
+      "min": 800,
+      "max": 2400,
+      "decimals": 0,
+      "units": {
+        "en": "RPM"
+      },
+      "placeholder": {
+        "en": "Choose between 800–2400"
+      }
+    }
+  ]
+}
