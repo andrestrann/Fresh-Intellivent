@@ -1,5 +1,8 @@
 {
   "1.0.0": {
     "en": "First release"
+  },
+  "1.0.1": {
+    "en": "Bug fixes. Improved user experience. Added Flow Cards"
   }
 }

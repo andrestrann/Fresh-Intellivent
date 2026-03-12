@@ -5,12 +5,11 @@ class FreshIntelliventApp extends Homey.App {
     this.log('Fresh Intellivent App is running...');
 
 
-    // Action Flow Cards //
+    // ** Action Flow Cards ** //
+    // Activate Constant speed mode at selected RPM
+    const startConstantSpeed = this.homey.flow.getActionCard('start-constant-speed-rpm');
 
-    // Activate Constant speed at selected RPM
-    const actionCard = this.homey.flow.getActionCard('start-constant-speed-rpm');
-
-    actionCard.registerRunListener(async (args, state) => {
+    startConstantSpeed.registerRunListener(async (args, state) => {
       try {
         let rpm = Number(args.rpm);
         if (!Number.isFinite(rpm)) {
@@ -22,6 +21,14 @@ class FreshIntelliventApp extends Homey.App {
         this.error('Failed to activate constant speed mode:', err);
         throw new Error(this.homey.__('errors.activation_failed') || 'Activation failed');
       }
+    });
+
+    // Deactivate Constant speed mode
+    const stopConstantSpeed = this.homey.flow.getActionCard('stop-constant-speed');
+
+    stopConstantSpeed.registerRunListener(async (args, state) => {
+     await args.device.stopConstantSpeed();
+     return true;
     });
   }
 }

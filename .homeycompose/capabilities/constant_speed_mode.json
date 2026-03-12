@@ -5,5 +5,6 @@
   },
   "getable": true,
   "setable": true,
-  "uiComponent": "toggle"
+  "uiComponent": "button",
+  "icon": "/assets/constant_icon.svg"
 }

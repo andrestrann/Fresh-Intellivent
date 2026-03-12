@@ -8,7 +8,6 @@
     "measure_humidity",
     "measure_rpm",
     "target_rpm",
-    "onoff",
     "boost_mode",
     "pause_mode",
     "constant_speed_mode",

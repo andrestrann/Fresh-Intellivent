@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.fresh.intellivent",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "compatibility": ">=10.0.0",
   "sdk": 3,
   "name": {
@@ -23,6 +23,64 @@
   "permissions": [
     "homey:wireless:ble"
   ],
+  "flow": {
+    "actions": [
+      {
+        "title": {
+          "en": "Activate Constant Speed Mode"
+        },
+        "titleFormatted": {
+          "en": "Activate the fan in Constant Speed Mode at [[rpm]] RPM"
+        },
+        "hint": {
+          "en": "When activated, your fan will activate in Constant Speed Mode without a timer until it has been deactivated"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=sky"
+          },
+          {
+            "type": "number",
+            "name": "rpm",
+            "title": {
+              "en": "RPM"
+            },
+            "min": 800,
+            "max": 2400,
+            "decimals": 0,
+            "units": {
+              "en": "RPM"
+            },
+            "placeholder": {
+              "en": "Choose between 800–2400"
+            }
+          }
+        ],
+        "id": "start-constant-speed-rpm"
+      },
+      {
+        "title": {
+          "en": "Deactivate Constant Speed Mode"
+        },
+        "titleFormatted": {
+          "en": "Deactivate Constant Speed Mode"
+        },
+        "hint": {
+          "en": "When activated, your fan will deactivate Constant Speed Mode"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=sky"
+          }
+        ],
+        "id": "stop-constant-speed"
+      }
+    ]
+  },
   "drivers": [
     {
       "name": {
@@ -34,7 +92,6 @@
         "measure_humidity",
         "measure_rpm",
         "target_rpm",
-        "onoff",
         "boost_mode",
         "pause_mode",
         "constant_speed_mode",
@@ -327,7 +384,8 @@
       },
       "getable": true,
       "setable": true,
-      "uiComponent": "toggle"
+      "uiComponent": "button",
+      "icon": "/assets/airing_icon.svg"
     },
     "boost_mode": {
       "type": "boolean",
@@ -336,7 +394,8 @@
       },
       "getable": true,
       "setable": true,
-      "uiComponent": "toggle"
+      "uiComponent": "button",
+      "icon": "/assets/boost_icon.svg"
     },
     "constant_speed_mode": {
       "type": "boolean",
@@ -345,7 +404,8 @@
       },
       "getable": true,
       "setable": true,
-      "uiComponent": "toggle"
+      "uiComponent": "button",
+      "icon": "/assets/constant_icon.svg"
     },
     "humidity_mode": {
       "type": "boolean",
@@ -354,7 +414,8 @@
       },
       "getable": true,
       "setable": true,
-      "uiComponent": "toggle"
+      "uiComponent": "button",
+      "icon": "/assets/humidity_icon.svg"
     },
     "last_updated": {
       "type": "string",
@@ -374,7 +435,8 @@
       },
       "getable": true,
       "setable": true,
-      "uiComponent": "toggle"
+      "uiComponent": "button",
+      "icon": "/assets/light_icon.svg"
     },
     "measure_rpm": {
       "type": "number",
@@ -397,7 +459,8 @@
       },
       "getable": true,
       "setable": true,
-      "uiComponent": "toggle"
+      "uiComponent": "button",
+      "icon": "/assets/pause_icon.svg"
     },
     "target_rpm": {
       "type": "number",

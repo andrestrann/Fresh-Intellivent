@@ -443,6 +443,39 @@ class SkyDevice extends Homey.Device {
     this.log(`Constant speed mode enabled at ${rpm} RPM`);
     return true;
   }
+
+  /**
+   * Called by the Flow Action run listener: args.device.stopConstantSpeedRPM()
+   */
+  async stopConstantSpeed() {
+    this.log('stopconstantspeed called');
+
+    const enabled = false;
+
+    // Send the command to the fan
+    try {
+      if (typeof this._executeWrite === 'function') {
+        await this._executeWrite('Set constant speed', () => this.sky.setConstantSpeed(enabled));
+      } else {
+        await this.sky.setConstantSpeed(enabled);
+      }
+    } catch (e) {
+      this.error('Failed to send constant speed command:', e);
+      throw e;
+    }
+
+    // Reflect state in capabilities
+    try {
+      if (this.hasCapability('constant_speed_mode')) {
+        await this.setCapabilityValue('constant_speed_mode', false);
+      }
+    } catch (e) {
+      this.error('Failed to set capability values:', e);
+    }
+
+    this.log(`Constant speed mode disabled`);
+    return true;
+  }
 }
 
 module.exports = SkyDevice;

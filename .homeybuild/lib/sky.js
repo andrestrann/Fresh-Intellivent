@@ -185,9 +185,16 @@ class FreshIntelliventSky {
     const status = data.readUInt8(0) !== 0;
     const modeRaw = data.readUInt8(1);
     const humidityRaw = data.readUInt16LE(2);
-    const humidity = humidityRaw !== 0
-      ? Math.round(Math.log(humidityRaw / 10) * 100) / 10
-      : null;
+    
+    let humidity = null;
+    // Filter common "invalid" markers and zero
+      if (humidityRaw !== 0 && humidityRaw !== 0xFFFF) {
+        const h = humidityRaw / 10;       // convert tenths → %
+        if (Number.isFinite(h) && h >= 0 && h <= 100) {
+          humidity = Math.round(h * 10) / 10; // one decimal place
+      }
+    }
+
     const temp = data.readUInt16LE(4) / 100;
     const authenticated = data.readUInt8(7) !== 0;
     const rpm = data.readUInt16LE(8);
