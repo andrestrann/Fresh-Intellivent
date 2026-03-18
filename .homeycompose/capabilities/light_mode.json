@@ -1,7 +1,7 @@
 {
   "type": "boolean",
   "title": {
-    "en": "Light/VOC Mode"
+    "en": "Light Mode"
   },
   "getable": true,
   "setable": true,

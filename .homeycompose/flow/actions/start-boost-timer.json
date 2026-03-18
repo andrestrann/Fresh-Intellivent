@@ -1,0 +1,34 @@
+{
+  "title": {
+    "en": "Activate Boost Mode"
+  },
+  "titleFormatted": {
+    "en": "Activate the fan in Boost Mode for [[mins]] minutes"
+  },
+  "hint": {
+    "en": "When activated, your fan will activate in Boost Mode for the duration selected"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=sky"
+    },
+    {
+      "type": "number",
+      "name": "mins",
+      "title": {
+        "en": "Minutes"
+      },
+      "min": 1,
+      "max": 120,
+      "decimals": 0,
+      "units": {
+        "en": "10"
+      },
+      "placeholder": {
+        "en": "Choose between 1 and 120 Minutes"
+      }
+    }
+  ]
+}
