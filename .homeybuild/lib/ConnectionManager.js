@@ -75,7 +75,8 @@ class ConnectionManager {
     this.keyStore = new KeyStore(homey);
     this._lastDisconnectTime = 0; // Track last disconnect to enforce cooldown
     this._lastAuthTime = 0;       // Track when we last authenticated
-    this._authMaxAge = 8000;      // Re-auth if last auth was more than 8s ago
+    // this._authMaxAge = 8000;      // Re-auth if last auth was more than 8s ago ** OLD CODE **
+    this._authMaxAge = 4000; // ** NEW CODE ** Re-auth if last auth was more than 4s ago. Prevents write not permitted errors
     this._idleTimer = null;       // Auto-disconnect after idle period
     this._idleTimeout = 30000;    // Keep connection alive for 30s after last activity
     this._discoveredServices = null; // Cache for GATT discovery (needed for writes)
@@ -85,15 +86,28 @@ class ConnectionManager {
    * Reset the idle timer. Called after each successful read/write.
    * After _idleTimeout ms of no activity, auto-disconnects.
    */
+
+  /** NEW CODE **/
   _resetIdleTimer() {
-    if (this._idleTimer) clearTimeout(this._idleTimer);
+    if (this._idleTimer) {
+      clearTimeout(this._idleTimer);
+      this._idleTimer = null;
+    }
     this._idleTimer = setTimeout(async () => {
-      if (this.isConnected) {
-        this.homey.log('[ConnectionManager] Idle timeout — auto-disconnecting');
-        await this.disconnect();
-      }
+      if (this.isConnected) await this.disconnect();
     }, this._idleTimeout);
   }
+
+  /** OLD CODE **/
+  //_resetIdleTimer() {
+  //  if (this._idleTimer) clearTimeout(this._idleTimer);
+  //  this._idleTimer = setTimeout(async () => {
+  //    if (this.isConnected) {
+  //      this.homey.log('[ConnectionManager] Idle timeout — auto-disconnecting');
+  //      await this.disconnect();
+  //    }
+  //  }, this._idleTimeout);
+  //}
 
   normalizeBleId(value) {
     return String(value || '').toUpperCase().replace(/[^A-F0-9]/g, '');
@@ -187,7 +201,8 @@ class ConnectionManager {
         }
         else if (strategyKey === 'B') {
           // Strategy B: discover all, then pick our fan from results
-          const devices = await this.homey.ble.discover();
+          // const devices = await this.homey.ble.discover(); ** OLD CODE **
+          const devices = await this.homey.ble.discover({ timeout: 3000 }); // ** NEW CODE **
           const arr = Array.isArray(devices) ? devices : Object.values(devices);
           this.homey.log(`[ConnectionManager] discover() found ${arr.length} BLE devices`);
           advertisement = this.findMatchingAdvertisement(devices);
@@ -207,7 +222,8 @@ class ConnectionManager {
 
         // Wait for BLE radio to settle before connecting (critical for stability)
         this.homey.log('[ConnectionManager] Waiting 3s for BLE radio settle...');
-        await new Promise(r => setTimeout(r, 3000));
+         await new Promise(r => setTimeout(r, 3000)); //**OLD CODE**
+        //await this.homey.ble.idle();  // **NEW CODE ** use built-in BLE settle on Homey
 
         const t0 = Date.now();
         this.homey.log('[ConnectionManager] Calling advertisement.connect()...');
@@ -406,7 +422,7 @@ class ConnectionManager {
       if (this.peripheral && typeof this.peripheral.disconnect === 'function') {
         await this.peripheral.disconnect();
       }
-    } catch (_) { /* ignore */ }
+    } catch (_) { /* ignore */ } //changed from _ to 'err'
     this.isConnected = false;
     this.peripheral = null;
     this.connectPromise = null;

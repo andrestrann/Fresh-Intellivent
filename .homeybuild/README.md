@@ -10,6 +10,8 @@ Control your Fresh Intellivent SKY fans via Bluetooth using Homey Pro.
 - Connection and auth with fan fails randomly.
 - High Memory (PSS) use, around 3 times higher than Homey recommends.
 - Memory leak (PSS Memory increasing the longer the app is running).
+- Node Instances created per device (ConnectionManager, KeyStore etc), doubling the RAM used per additional added device
+- If multiple sky devices are installed, poll crashing makes the BLE connection fail => connection queue needed
 - Relative Humidity sometimes showing unexpected values.
 
 ## Features

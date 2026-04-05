@@ -4,11 +4,12 @@
     "en": "Fan Speed (RPM)"
   },
   "units": {
-    "en": "rpm"
+    "en": "RPM"
   },
   "getable": true,
   "setable": false,
   "min": 0,
   "max": 3000,
-  "icon": "/assets/icon.svg"
+  "icon": "/assets/icon.svg",
+  "insights": true
 }
