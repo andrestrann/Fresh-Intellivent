@@ -23,6 +23,9 @@
   "permissions": [
     "homey:wireless:ble"
   ],
+  "platforms": [
+    "local"
+  ],
   "flow": {
     "actions": [
       {
@@ -146,7 +149,7 @@
         "large": "/drivers/sky/assets/images/large.png",
         "xlarge": "/drivers/sky/assets/images/xlarge.png"
       },
-      "icon": "drivers/sky/assets/icon.svg",
+      "icon": "assets/assets/icon.svg",
       "pair": [
         {
           "id": "start",

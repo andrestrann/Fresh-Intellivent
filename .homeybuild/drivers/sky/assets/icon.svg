@@ -1,39 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 960" width="960" height="960">
-  <!-- Driver icon: Fresh Intellivent SKY fan - round ceiling vent with subtle 3D angle -->
-  <!-- Transparent background, device outline style -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <!-- App icon: Stylized ventilation/airflow symbol - transparent background -->
   <defs>
-    <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#555"/>
-      <stop offset="100%" stop-color="#333"/>
-    </linearGradient>
-    <linearGradient id="grillGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#666"/>
-      <stop offset="100%" stop-color="#444"/>
+    <linearGradient id="blade" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2980b9"/>
+      <stop offset="100%" stop-color="#1a5276"/>
     </linearGradient>
   </defs>
-
-  <g transform="translate(480,480)">
-    <!-- Outer housing - slightly elliptical for 3D perspective -->
-    <ellipse cx="0" cy="0" rx="400" ry="380" fill="none" stroke="#444" stroke-width="12"/>
-
-    <!-- Inner housing ring -->
-    <ellipse cx="0" cy="0" rx="360" ry="342" fill="none" stroke="#555" stroke-width="6"/>
-
-    <!-- Ventilation grille - horizontal slats with perspective -->
-    <line x1="-320" y1="-240" x2="320" y2="-240" stroke="#555" stroke-width="5" stroke-linecap="round"/>
-    <line x1="-340" y1="-180" x2="340" y2="-180" stroke="#555" stroke-width="5" stroke-linecap="round"/>
-    <line x1="-350" y1="-120" x2="350" y2="-120" stroke="#555" stroke-width="5" stroke-linecap="round"/>
-    <line x1="-355" y1="-60" x2="355" y2="-60" stroke="#555" stroke-width="5" stroke-linecap="round"/>
-    <line x1="-358" y1="0" x2="358" y2="0" stroke="#555" stroke-width="5" stroke-linecap="round"/>
-    <line x1="-355" y1="60" x2="355" y2="60" stroke="#555" stroke-width="5" stroke-linecap="round"/>
-    <line x1="-350" y1="120" x2="350" y2="120" stroke="#555" stroke-width="5" stroke-linecap="round"/>
-    <line x1="-340" y1="180" x2="340" y2="180" stroke="#555" stroke-width="5" stroke-linecap="round"/>
-    <line x1="-320" y1="240" x2="320" y2="240" stroke="#555" stroke-width="5" stroke-linecap="round"/>
-
-    <!-- Status indicator LED -->
-    <circle cx="0" cy="310" r="12" fill="#555"/>
-
-    <!-- Center logo area -->
-    <ellipse cx="0" cy="0" rx="50" ry="48" fill="none" stroke="#444" stroke-width="4"/>
+  <!-- Fan blades - 5 curved blades radiating from center -->
+  <g transform="translate(250,250)">
+    <!-- Blade 1 -->
+    <path d="M0,-20 C40,-100 120,-180 30,-200 C-20,-210 -60,-160 -40,-80 Z" fill="url(#blade)" opacity="0.95"/>
+    <!-- Blade 2 -->
+    <path d="M0,-20 C40,-100 120,-180 30,-200 C-20,-210 -60,-160 -40,-80 Z" fill="url(#blade)" opacity="0.95" transform="rotate(72)"/>
+    <!-- Blade 3 -->
+    <path d="M0,-20 C40,-100 120,-180 30,-200 C-20,-210 -60,-160 -40,-80 Z" fill="url(#blade)" opacity="0.95" transform="rotate(144)"/>
+    <!-- Blade 4 -->
+    <path d="M0,-20 C40,-100 120,-180 30,-200 C-20,-210 -60,-160 -40,-80 Z" fill="url(#blade)" opacity="0.95" transform="rotate(216)"/>
+    <!-- Blade 5 -->
+    <path d="M0,-20 C40,-100 120,-180 30,-200 C-20,-210 -60,-160 -40,-80 Z" fill="url(#blade)" opacity="0.95" transform="rotate(288)"/>
+    <!-- Center hub -->
+    <circle cx="0" cy="0" r="35" fill="#1a5276"/>
+    <circle cx="0" cy="0" r="20" fill="#2980b9"/>
   </g>
+  <!-- Outer ring for ventilation housing look -->
+  <circle cx="250" cy="250" r="230" fill="none" stroke="#2980b9" stroke-width="8" opacity="0.3"/>
 </svg>
